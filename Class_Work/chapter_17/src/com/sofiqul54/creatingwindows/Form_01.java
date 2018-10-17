@@ -1,7 +1,6 @@
 package com.sofiqul54.creatingwindows;
 
 import javax.swing.JFrame;
-import javax.swing.UIManager;
 
 public class Form_01 {
 
