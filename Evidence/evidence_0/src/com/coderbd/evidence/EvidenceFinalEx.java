@@ -57,7 +57,7 @@ public class EvidenceFinalEx extends javax.swing.JFrame {
         chkWriting = new javax.swing.JCheckBox();
         chkCoding = new javax.swing.JCheckBox();
         jLabel7 = new javax.swing.JLabel();
-        cmbRound = new javax.swing.JComboBox<>();
+        cmbRound = new javax.swing.JComboBox<String>();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tNote = new javax.swing.JTextArea();
@@ -103,30 +103,13 @@ public class EvidenceFinalEx extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Name");
 
-        txtName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNameActionPerformed(evt);
-            }
-        });
-
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Email");
-
-        txtEmail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEmailActionPerformed(evt);
-            }
-        });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Age");
 
         txtAge.setText("0");
-        txtAge.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAgeActionPerformed(evt);
-            }
-        });
         txtAge.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtAgeKeyPressed(evt);
@@ -155,7 +138,7 @@ public class EvidenceFinalEx extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setText("Round");
 
-        cmbRound.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select A Round", "Round-32", "Round-33", "Round-34", "Round-35", "Round-36", "Round-37", "Round-38", "Round-39" }));
+        cmbRound.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select A Round", "Round-32", "Round-33", "Round-34", "Round-35" }));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("Note");
@@ -360,12 +343,12 @@ public class EvidenceFinalEx extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-public boolean checkEmailValidityNew(String email) {
+public boolean checkEmailValidity1(String email) {
 
         int atpos = email.indexOf("@");
         int dotpos = email.lastIndexOf(".");
 
-        if (atpos > 1 && (dotpos - atpos) > 2 && dotpos < email.length()- 2) {
+        if (atpos > 1 && (dotpos - atpos) > 2) {
             //  System.out.println("Email is valid");
             return true;
         } else {
@@ -395,7 +378,7 @@ public boolean checkEmailValidityNew(String email) {
         if (txtName.getText().length() < 1) {
             JOptionPane.showMessageDialog(null, "Enter your Name");
         } //Validation is for Email field
-        else if (!checkEmailValidityNew(txtEmail.getText()) || txtEmail.getText().length() < 1) {
+        else if (!checkEmailValidity1(txtEmail.getText()) || txtEmail.getText().length() < 1) {
             JOptionPane.showMessageDialog(null, "Enter your Valid Email");
         } //Validation is for Age field
         else if (Integer.parseInt(txtAge.getText()) < 18 || Integer.parseInt(txtAge.getText()) > 70) {
@@ -456,7 +439,7 @@ public boolean checkEmailValidityNew(String email) {
                 model.addRow(row);
 
                 try {
-                    Utils.writeTofile("molyIsrat", students);
+                    Utils.writeTofile("student", students);
                 } catch (Exception ex) {
                     Logger.getLogger(EvidenceFinalEx.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -478,7 +461,7 @@ public boolean checkEmailValidityNew(String email) {
     }//GEN-LAST:event_clearTableActionPerformed
 
     private void tblDisplayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDisplayMouseClicked
-/*        int i = tblDisplay.getSelectedRow();
+        int i = tblDisplay.getSelectedRow();
         TableModel model = tblDisplay.getModel();
         txtName.setText(model.getValueAt(i, 0).toString());
         txtEmail.setText(model.getValueAt(i, 1).toString());
@@ -521,14 +504,13 @@ public boolean checkEmailValidityNew(String email) {
 
         //  cmbCountry.setSelectedIndex(i);
         tNote.setText(model.getValueAt(i, 6).toString());
-        */
     }//GEN-LAST:event_tblDisplayMouseClicked
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
         txtName.setText("");
         txtEmail.setText("");
-        txtAge.setText("0");
-        rMale.setSelected(true);
+        txtAge.setText("");
+        buttonGroup1.clearSelection();
         chkCoding.setSelected(false);
         chkReading.setSelected(false);
         chkWriting.setSelected(false);
@@ -550,24 +532,12 @@ public boolean checkEmailValidityNew(String email) {
     private void btnReadFromFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReadFromFileActionPerformed
         String columns[] = {" Name ", " Age ", " Email ", "Gender"," Hobby "," Round "," Note "};
         DefaultTableModel tableModel;
-        // table with 7 columns
+        // table with 4 columns
         tableModel = new DefaultTableModel(0, 7);
         tableModel.setColumnIdentifiers(columns);
         tblDisplay.setModel(tableModel);
-        Utils.displayStudentsdataFromFile("molyIsrat", tableModel);
+        Utils.displayStudentsdataFromFile("student", tableModel);
     }//GEN-LAST:event_btnReadFromFileActionPerformed
-
-    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEmailActionPerformed
-
-    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNameActionPerformed
-
-    private void txtAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAgeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtAgeActionPerformed
 
     /**
      * @param args the command line arguments
