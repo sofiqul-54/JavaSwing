@@ -1,8 +1,8 @@
-package com.coderbd.evidence;
+package com.sofiqul54.evidence;
 
 /**
  *
- * @author Rajaul Islam
+ * @author Sofiqul Islam
  */
 public class Student {
     private String name;
