@@ -51,7 +51,7 @@ public class View extends javax.swing.JFrame {
         btnReset = new javax.swing.JButton();
         lblmessage = new javax.swing.JLabel();
         btnExit = new javax.swing.JButton();
-        txtPassword = new javax.swing.JTextField();
+        txtPassword = new javax.swing.JPasswordField();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDisplay = new javax.swing.JTable();
@@ -259,7 +259,7 @@ public class View extends javax.swing.JFrame {
         String id = "", name = "", password = "", email = "", gender = "", round = "";
         id = txtId.getText();
         name = txtName.getText();
-        password = txtPassword.getText();
+        password = txtPassword.getPassword().toString();
         if (rMale.isSelected()) {
             gender = rMale.getText();
         }
@@ -367,6 +367,6 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtPassword;
+    private javax.swing.JPasswordField txtPassword;
     // End of variables declaration//GEN-END:variables
 }
